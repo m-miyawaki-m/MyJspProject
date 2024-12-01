@@ -1,0 +1,11 @@
+model\ConnectionBase.class
+controller\ShainDeleteComplete.class
+beans\ShainBean.class
+controller\ShainInsert.class
+controller\IndexServlet.class
+controller\ShainDelete.class
+controller\ShainUpdate.class
+model\ShainLogic.class
+controller\ShainInsertComplete.class
+controller\ShainUpdateComplete.class
+controller\ShainIndex.class
