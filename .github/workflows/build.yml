@@ -1,0 +1,33 @@
+name: Maven Build and Test
+
+on:
+  push:
+    branches: [ main ]  # 対象のブランチを指定
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: コードのチェックアウト
+      uses: actions/checkout@v3
+
+    - name: Javaのセットアップ
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'  # または 'zulu'、'adopt' など
+        java-version: '17'  # 必要なJavaのバージョンを指定
+
+    - name: Mavenキャッシュの設定
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+
+    - name: Mavenビルドとテスト
+      run: mvn clean install
